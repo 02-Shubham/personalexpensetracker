@@ -57,7 +57,6 @@ export function TransactionList({ transactions, onDeleteTransaction }: Transacti
                     : '-'}{' '}
                   {formatCurrency(transaction.amount)}
                 </span>
-                {transaction.type === 'loan' && (
                   <button
                     onClick={() => onDeleteTransaction(transaction.id)}
                     className="p-2 text-gray-400 hover:text-red-500 transition-colors"
@@ -65,11 +64,15 @@ export function TransactionList({ transactions, onDeleteTransaction }: Transacti
                   >
                     <Trash2 size={18} />
                   </button>
-                )}
               </div>
             </div>
           );
         })}
+          {transactions.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            No transactions yet. Add your first transaction using the form.
+          </div>
+        )}
       </div>
     </div>
   );

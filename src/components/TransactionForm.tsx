@@ -143,7 +143,7 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
 
         <button
           type="submit"
-          className="w-full flex items-center justify-center gap-2 bg-teal-400 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-teal-400 text-white px-4 py-2  hover:bg-teal-600 transition-colors"
         >
           <PlusCircle size={18} />
           Add Transaction

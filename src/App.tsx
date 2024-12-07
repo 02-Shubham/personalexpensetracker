@@ -22,33 +22,37 @@ export function App() {
     setTransactions((prev) => [transaction, ...prev]);
   };
 
-  const handleDeleteTransaction = (transactionId: string) => {
-    setTransactions((prev) => {
-      const transaction = prev.find((t) => t.id === transactionId);
-      if (transaction?.type === 'loan') {
-        // Add a settlement transaction when a loan is deleted
-        const settlementTransaction: Transaction = {
-          id: crypto.randomUUID(),
-          type: 'income',
-          amount: transaction.amount,
-          category: 'settlement',
-          description: `Settlement for loan ${transaction.loanDirection === 'given' ? 'from' : 'to'} ${transaction.personName}`,
-          date: new Date().toISOString(),
-        };
+  const handleDeleteTransaction = (id: string) => {
+    setTransactions((prev) => prev.filter(transaction => transaction.id !== id));
+  };
+
+  // const handleDeleteTransaction = (transactionId: string) => {
+  //   setTransactions((prev) => {
+  //     const transaction = prev.find((t) => t.id === transactionId);
+  //     if (transaction?.type === 'loan') {
+  //       // Add a settlement transaction when a loan is deleted
+  //       const settlementTransaction: Transaction = {
+  //         id: crypto.randomUUID(),
+  //         type: 'income',
+  //         amount: transaction.amount,
+  //         category: 'settlement',
+  //         description: `Settlement for loan ${transaction.loanDirection === 'given' ? 'from' : 'to'} ${transaction.personName}`,
+  //         date: new Date().toISOString(),
+  //       };
         
         // If it was a given loan, add positive settlement
         // If it was a taken loan, add negative settlement
-        if (transaction.loanDirection === 'given') {
-          return prev.filter((t) => t.id !== transactionId).concat(settlementTransaction);
-        } else {
-          settlementTransaction.type = 'expense';
-          return prev.filter((t) => t.id !== transactionId).concat(settlementTransaction);
-        }
-      }
-      return prev.filter((t) => t.id !== transactionId);
-    });
-  };
 
+    //     if (transaction.loanDirection === 'given') {
+    //       return prev.filter((t) => t.id !== transactionId).concat(settlementTransaction);
+    //     } else {
+    //       settlementTransaction.type = 'expense';
+    //       return prev.filter((t) => t.id !== transactionId).concat(settlementTransaction);
+    //     }
+    //   }
+    //   return prev.filter((t) => t.id !== transactionId);
+    // });
+  // };
   return (
     <div className="min-h-screen bg-teal-400">
       <div className="container mx-auto px-4 py-8">
