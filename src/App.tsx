@@ -57,7 +57,7 @@ export function App() {
     <div className="min-h-screen bg-teal-400">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-serif text-center font-bold text-slate-900 mb-10">
-           Shubham's Personal Finance Tracker
+          Personal Finance Tracker
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -74,6 +74,7 @@ export function App() {
           </div>
         </div>
       </div>
+      <p className='font-serif text-center font-bold'>Made by <a href='https://github.com/02-Shubham'> @ Shubham Sahu</a></p>
     </div>
   );
 }
